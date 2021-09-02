@@ -1,5 +1,5 @@
 {
-    "name": "AdnromedaLab/fixerio",
+    "name": "adnromedalab/fixerio",
     "description": "Wrapper for Fixer.io",
     "license": "MIT",
     "keywords": ["exchange", "fixer", "laravel"],
