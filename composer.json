@@ -8,15 +8,21 @@
             "name": "Fadion Dashi",
             "email": "jonidashi@gmail.com",
             "homepage": "http://www.streha.al"
+        },
+        {
+            "name": "Aleksandr Stifanenkov",
+            "email": "stifanenkovalexander@yandex.ru"
         }
     ],
     "require": {
-        "php": ">=5.4.0",
-        "guzzlehttp/guzzle": "~6.0"
+        "php":               ">=5.5.0",
+        "guzzlehttp/guzzle": "~6.0",
+        "ext-json":          "*"
     },
     "require-dev": {
-        "mockery/mockery": "dev-master",
-        "phpunit/phpunit": "4.8.*"
+        "roave/security-advisories": "dev-latest",
+        "mockery/mockery":           "dev-master",
+        "phpunit/phpunit":           "4.8.*"
     },
     "autoload": {
         "psr-4": {
