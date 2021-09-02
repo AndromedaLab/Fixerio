@@ -8,7 +8,7 @@ A thin wrapper for [Fixer.io](http://www.fixer.io), a service for foreign exchan
 ```json
 {
     "require": {
-        "fadion/fixerio": "~1.0"
+        "andromedalab/fixerio": "~1.0"
     }
 }
 ```
