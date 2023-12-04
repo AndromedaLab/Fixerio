@@ -88,6 +88,16 @@ class ExchangeTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($url, $expected);
     }
 
+    public function testTimeseries()
+    {
+        $startDate = '2012-01-01';
+        $endDate = '2012-12-31';
+        $url = (new Exchange())->timeseries($startDate, $endDate)->getUrl();
+        $expected = $this->url.'/timeseries?base=EUR&start_date='.$startDate.'&end_date='.$endDate;
+
+        $this->assertEquals($url, $expected);
+    }
+
     public function testFullExample()
     {
         $url = (new Exchange())->secure()->base('USD')->symbols('EUR', 'GBP')->getUrl();
@@ -148,7 +158,7 @@ class ExchangeTest extends PHPUnit_Framework_TestCase
 
     /**
      * @expectedException Fadion\Fixerio\Exceptions\ResponseException
-     * @expectedExceptionMessage Some error message
+     * @expectedExceptionMessage Unknown error.
      */
     public function testResponseException()
     {
