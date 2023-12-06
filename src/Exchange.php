@@ -184,6 +184,19 @@ class Exchange
     }
 
     /**
+     * Change api url
+     *
+     * @param  string $baseUrl Url without protocol, e.g.: data.fixer.io/api
+     * @return Exchange
+     */
+    public function setBaseUrl($baseUrl)
+    {
+        $this->url = $baseUrl;
+
+        return $this;
+    }
+
+    /**
      * Makes the request and returns the response
      * with the rates.
      *
