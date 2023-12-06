@@ -29,6 +29,18 @@ class Exchange
     private $date;
 
     /**
+     * Start date when timeseries call is made
+     * @var ?string
+     */
+    private $startDate = null;
+
+    /**
+     * End date when timeseries call is made
+     * @var ?string
+     */
+    private $endDate = null;
+
+    /**
      * Http or Https
      * @var string
      */
@@ -145,6 +157,23 @@ class Exchange
     }
 
     /**
+     * Defines that the api call should be
+     * time-series, meaning it will return rates
+     * for all days in date range
+     *
+     * @param string $startDate
+     * @param string $endDate
+     * @return Exchange
+     */
+    public function timeseries($startDate, $endDate)
+    {
+        $this->startDate = date('Y-m-d', strtotime($startDate));
+        $this->endDate = date('Y-m-d', strtotime($endDate));
+
+        return $this;
+    }
+
+    /**
      * Returns the correctly formatted url
      *
      * @return string
@@ -152,6 +181,19 @@ class Exchange
     public function getUrl()
     {
         return $this->buildUrl($this->url);
+    }
+
+    /**
+     * Change api url
+     *
+     * @param  string $baseUrl Url without protocol, e.g.: data.fixer.io/api
+     * @return Exchange
+     */
+    public function setBaseUrl($baseUrl)
+    {
+        $this->url = $baseUrl;
+
+        return $this;
     }
 
     /**
@@ -229,6 +271,8 @@ class Exchange
 
         if ($this->date) {
             $url .= $this->date;
+        } elseif ($this->startDate !== null && $this->endDate !== null) {
+            $url .= 'timeseries';
         } else {
             $url .= 'latest';
         }
@@ -242,6 +286,11 @@ class Exchange
         $symbols = $this->symbols;
         if ($symbols) {
             $url .= '&symbols=' . implode(',', $symbols);
+        }
+
+        if ($this->startDate !== null && $this->endDate !== null) {
+            $url .= '&start_date=' . $this->startDate;
+            $url .= '&end_date=' . $this->endDate;
         }
 
         return $url;

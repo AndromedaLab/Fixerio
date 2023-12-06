@@ -54,6 +54,18 @@ $exchange->symbols(Currency::USD, Currency::EUR, Currency::GBP);
 $rates = $exchange->get();
 ```
 
+The `timeseries` option will return currency rates for every day in date range. Period shouldn't be greater than 1 year. The base currency and symbols can be omitted here to, example:
+
+```php
+$exchange = new Exchange();
+$exchange->key("YOUR_ACCESS_KEY");
+$exchange->timeseries('2012-01-01', '2012-12-31');
+$exchange->base(Currency::AUD);
+$exchange->symbols(Currency::USD, Currency::EUR, Currency::GBP);
+
+$rates = $exchange->get();
+```
+
 Finally, you may have noticed the use of the `Currency` class with currencies as constants. It's just a convenience to prevent errors from typos, but they're completely optional.
 
 This:
